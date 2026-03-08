@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 export LANG=en_US.UTF-8
 
+# CF CDN 域名列表
 cdn_domains=(
 "time.cloudflare.com"
 "shopify.com"
@@ -75,9 +76,7 @@ ping_results=()
 
 for domain in "${cdn_domains[@]}"; do
   echo -n "正在测试 $domain ... "
-
   result=$(ping -c 3 -q "$domain" 2>/dev/null | awk -F'/' 'END {print $5}')
-
   if [ -n "$result" ]; then
     echo "$result ms"
     ping_results+=("$result:$domain")
@@ -92,10 +91,12 @@ echo ""
 
 sorted=$(printf "%s\n" "${ping_results[@]}" | sort -t ":" -k1n)
 
-echo "$sorted" | while IFS=":" read -r ping domain
-do
-  printf "%s ms  %s\n" "$ping" "$domain"
-done > CDNym.txt
+# 保存到文件并打印
+{
+  while IFS=":" read -r ping domain; do
+    printf "%s ms  %s\n" "$ping" "$domain"
+  done <<< "$sorted"
+} > CDNym.txt
 
 echo "-----------------------------------"
 echo "排序完成，结果已保存到 CDNym.txt"
@@ -105,7 +106,3 @@ cat CDNym.txt
 
 echo ""
 echo "提示：如果网络支持IPv6，可使用 CF 不死IP：2606:4700::"
-
-
-
-
