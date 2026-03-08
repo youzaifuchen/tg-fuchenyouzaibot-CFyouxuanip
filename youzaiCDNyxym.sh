@@ -63,40 +63,43 @@ echo "苍井空提示 ：悠哉永久免费分享"
 echo "------------------------------------------------------"
 echo "悠哉提示请在非代理的本地网络环境下运行"
 echo "------------------------------------------------------"
-echo "26.03.08更新：目前已收录52个CF-CDN域名（不定期更新域名列表）"
+echo "26.03.08更新：目前已收录${#cdn_domains[@]}个CF-CDN域名（不定期更新域名列表）"
 echo "------------------------------------------------------"
 
-sleep 2
+sleep 1
 
 echo "苍井空提示每个域名Ping 3次，取平均值排序……"
 echo "悠哉提示注意：Ping值高低仅供参考，与速度无关"
 
-sleep 2
+sleep 1
 
 ping_results=()
 
 for domain in "${cdn_domains[@]}"; do
-  echo -n "正在测试 $domain 的ping值…… "
-  ping_result=$(ping -c 3 -q "$domain" 2>/dev/null | awk -F'/' 'END {print $5}')
+    echo -n "正在测试 $domain 的ping值…… "
+    ping_result=$(ping -c 3 -q "$domain" 2>/dev/null | awk -F'/' 'END {print $5}')
 
-  if [ -n "$ping_result" ]; then
-    echo "$ping_result ms"
-    ping_results+=("$ping_result:$domain")
-  else
-    echo "悠哉提示该域名ping失败"
-  fi
+    if [ -n "$ping_result" ]; then
+        echo "$ping_result ms"
+        ping_results+=("$ping_result:$domain")
+    else
+        echo "悠哉提示该域名ping失败"
+    fi
 done
 
+# 排序
 sorted_results=$(printf "%s\n" "${ping_results[@]}" | sort -t ':' -k1n)
 
+# 输出到文件
+output_file="$HOME/CDNym.txt"
 echo "$sorted_results" | while IFS=":" read -r ping_value domain; do
-  printf "%s ms：%s\n" "$ping_value" "$domain"
-done > CDNym.txt
+    printf "%s ms：%s\n" "$ping_value" "$domain"
+done > "$output_file"
 
 echo ""
-echo "悠哉提示排序结果已保存到主目录文件：CDNym.txt，内容如下，选择延迟低的域名替换客户端地址"
+echo "悠哉提示排序结果已保存到主目录文件：$output_file"
 echo "------------------------"
-cat CDNym.txt
+cat "$output_file"
 echo ""
 echo "苍井空提示：如果你的网络支持IPV6，可使用懒人专用不死自选IP：2606:4700:: 填到客户端地址即可"
 echo "------------------------"
