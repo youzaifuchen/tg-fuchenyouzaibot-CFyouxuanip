@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/usr/bin/env bash
 export LANG=en_US.UTF-8
 
 cdn_domains=(
