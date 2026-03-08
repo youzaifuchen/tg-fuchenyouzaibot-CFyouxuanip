@@ -44,9 +44,9 @@ awk -F ',' '$2 ~ /TIA|VIE|MSQ|BRU|SOF|ZAG|LCA|PRG|CPH|TLL|HEL|BOD|LYS|MRS|CDG|TB
 #fi
 
 if timeout 3 ping -c 2 2400:3200::1 &> /dev/null; then
-echo "当前网络支持IPV4+IPV6"
+echo "悠哉提示当前网络支持IPV4+IPV6"
 else
-echo "当前网络仅支持IPV4"
+echo "悠哉提示当前网络仅支持IPV4"
 fi
 rm -rf 6.csv 4.csv
 echo "悠哉TG联系方式  ：@fuchenyouzaibot"
