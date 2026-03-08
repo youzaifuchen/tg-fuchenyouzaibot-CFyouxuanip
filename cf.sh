@@ -98,7 +98,7 @@ exit
 fi
 clear
 if [ -e 4.csv ]; then
-echo "IPV4最佳可用节点如下（取前三名）："
+echo "悠哉IPV4最佳可用节点如下（取前三名）："
 echo "美国IPV4优选结果："
 cat US-4.csv
 echo
@@ -109,7 +109,7 @@ echo "欧洲IPV4优选结果："
 cat EU-4.csv
 fi
 if [ -e 6.csv ]; then
-echo "IPV6最佳可用节点如下（取前三名）："
+echo "苍井空IPV6最佳可用节点如下（取前三名）："
 echo "美国IPV6优选结果："
 cat US-6.csv
 echo
