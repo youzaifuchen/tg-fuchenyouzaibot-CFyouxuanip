@@ -105,3 +105,6 @@ cat CDNym.txt
 
 echo ""
 echo "提示：如果网络支持IPv6，可使用 CF 不死IP：2606:4700::"
+
+
+
