@@ -9,17 +9,15 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Sync with upstream
+      - name: Sync
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           upstream_sync_repo: fuchenyouzai/tg-fuchenyouzaibot-CFyouxuanip
           upstream_sync_branch: main
           target_sync_branch: main
-          upstream_pull_args: --allow-unrelated-histories
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
