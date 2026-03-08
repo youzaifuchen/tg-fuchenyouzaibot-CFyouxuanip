@@ -50,9 +50,9 @@ echo "1、悠哉优选CF官方IPV4"
 echo "2、悠哉优选CF官方IPV6 (本地网络须支持IPV6)"
 read -p "苍井空提示请选择：" point
 if [ "$point" = "1" ]; then
-curl -s -O https://gh-proxy.com/https://gh-proxy.com/https://raw.githubusercontent.com/fuchenyouzai/tg-fuchenyouzaibot-CFyouxuanip/refs/heads/main/cpu3/ip.txt
+curl -s -O https://gh-proxy.com/https://raw.githubusercontent.com/fuchenyouzai/tg-fuchenyouzaibot-CFyouxuanip/refs/heads/main/cpu3/ip.txt
 elif [ "$point" = "2" ]; then
-curl -s -o ip.txt https://gh-proxy.com/https://gh-proxy.com/https://raw.githubusercontent.com/fuchenyouzai/tg-fuchenyouzaibot-CFyouxuanip/refs/heads/main/cpu3/ipv6.txt
+curl -s -o ip.txt https://gh-proxy.com/https://raw.githubusercontent.com/fuchenyouzai/tg-fuchenyouzaibot-CFyouxuanip/refs/heads/main/cpu3/ipv6.txt
 else
 echo "苍井空提示输入有误，请重新选择" && gfip
 fi
